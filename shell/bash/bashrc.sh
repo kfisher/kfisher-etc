@@ -26,3 +26,7 @@ source "$HOME/.local/etc/shell/common/aliases.sh"
 if [ -r /usr/share/bash-completion/bash_completion ]; then
   source /usr/share/bash-completion/bash_completion
 fi
+
+# initialize rbenv
+#------------------------------------------------------------------------------
+[[ -d "$HOME/.rbenv" ]] && eval "$(rbenv init -)"
