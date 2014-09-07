@@ -2,35 +2,40 @@
 # zshrc.zsh
 #==============================================================================
 
-# options
+# Options
 #------------------------------------------------------------------------------
 setopt appendhistory autocd extendedglob nomatch
 unsetopt beep
 
-# key bindings
+# Key Bindings
 #------------------------------------------------------------------------------
 bindkey -e
 
-# command history settings
+# Command History Settings
 #------------------------------------------------------------------------------
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# completions
+# Completions
 #------------------------------------------------------------------------------
 autoload -Uz compinit
 compinit
 setopt completealiases
 
-# shell prompt
+# Shell Prompt
 #------------------------------------------------------------------------------
-export PS1="$:/ "
+export PS1="$ZSHENV_LOADED$:/ "
 
-# aliases
+# Aliases
 #------------------------------------------------------------------------------
 source "$HOME/.local/etc/shell/common/aliases.sh"
 
-# initialize rbenv
+# Load environmental settings. This can't be done in zshenv because archlinux
+# sources /etc/profile after ~/.zshenv overriding any command path changes.
+#------------------------------------------------------------------------------
+source "$HOME/.local/etc/shell/common/environment.sh"
+
+# Initialize rbenv.
 #------------------------------------------------------------------------------
 [[ -d "$HOME/.rbenv" ]] && eval "$(rbenv init -)"
