@@ -5,8 +5,13 @@
 #------------------------------------------------------------------------------
 # Go
 #------------------------------------------------------------------------------
+
+if [ -d "/opt/go/go-1.3.3" ]; then
+  export GOROOT="/opt/go/go-1.3.3"
+  export PATH="$PATH:$GOROOT/bin"
+fi
+
 [[ -d "$HOME/Code/go" ]]     && export GOPATH="$HOME/Code/go"
-[[ -d "/usr/local/go/bin" ]] && export PATH="/usr/local/go/bin:$PATH"
 [[ -d "$HOME/Code/go/bin" ]] && export PATH="$HOME/Code/go/bin:$PATH"
 
 #------------------------------------------------------------------------------
