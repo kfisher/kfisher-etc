@@ -1,0 +1,229 @@
+" ----------------------------------------------------------------------
+" Copyright (c) 2014, Kevin Fisher. All rights reserved.
+" Use of this source code is governed by the BSD style license that
+" can be found in the LICENSE file.
+" ----------------------------------------------------------------------
+
+runtime bundle/pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+execute pathogen#helptags()
+
+if has("autocmd")
+    filetype plugin indent on
+endif
+
+" ======================================================================
+"                                Options
+" ======================================================================
+
+" ----------------------------------------------------------------------
+"  Important
+" ----------------------------------------------------------------------
+set nocompatible
+
+" ----------------------------------------------------------------------
+"  Moving Around, Searching and Patterns
+" ----------------------------------------------------------------------
+set ignorecase
+set incsearch
+set smartcase
+
+" ----------------------------------------------------------------------
+"  Tags
+" ----------------------------------------------------------------------
+
+" ----------------------------------------------------------------------
+"  Displaying Text
+" ----------------------------------------------------------------------
+set listchars=tab:▸\ ,eol:¬
+set nowrap
+set number
+set scroll=8
+set scrolloff=3
+
+" ----------------------------------------------------------------------
+"  Syntax, Highlighting and Spelling
+" ----------------------------------------------------------------------
+colorscheme solarized
+if has("gui_running")
+    set background=dark
+else
+    set t_Co=16
+    set background=dark
+endif
+set cursorline
+set nospell
+set spelllang=en
+set spellsuggest=5
+syntax on
+
+" ----------------------------------------------------------------------
+"  Multiple Windows
+" ----------------------------------------------------------------------
+set laststatus=2
+set splitbelow
+set splitright
+set statusline=
+set statusline+=%2.2n\                           " buffer number
+set statusline+=%f\                              " relative filepath
+set statusline+=%([%H%M%R%W]%)                   " flags
+set statusline+=%=
+set statusline+=[%Y]                             " filetype
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}]  " encoding
+set statusline+=[%l,%c%V]                        " line,column number
+set statusline+=%<
+set statusline+=[%P]\                            " file position
+
+" ----------------------------------------------------------------------
+"  Multiple Tab Pages
+" ----------------------------------------------------------------------
+function ShortTabLine()
+    let ret = ''
+    for i in range(tabpagenr('$'))
+        if i + 1 == tabpagenr()
+            let ret .= '%#TabLineSel#'
+        else
+            let ret .= '%#TabLine#'
+        endif
+        let buflist = tabpagebuflist(i+1)
+        let winnr = tabpagewinnr(i+1)
+        let buffername = bufname(buflist[winnr-1])
+        let filename = fnamemodify(buffername,':t')
+        if filename == ''
+            let filename = 'noname'
+        endif
+        if strlen(filename) >= 20
+            let ret .= '['. filename[0:17].'..]'
+        else
+            let ret .= '['.filename.']'
+        endif
+    endfor
+    let ret .= '%#TabLineFill#%T'
+    return ret
+endfunction
+set tabline=%!ShortTabLine()
+
+" ----------------------------------------------------------------------
+"  Terminal
+" ----------------------------------------------------------------------
+
+" ----------------------------------------------------------------------
+"  Using the Mouse
+" ----------------------------------------------------------------------
+if has("mouse")
+    set mouse=
+endif
+
+" ----------------------------------------------------------------------
+"  GUI
+" ----------------------------------------------------------------------
+set linespace=1
+set guifont=Droid\ Sans\ Mono\ 11
+set guioptions-=m     " Remove menubar
+set guioptions-=T     " Remove toolbar
+set guioptions-=L     " Remove scrollbars from new windows
+set guioptions-=l     " Remove left-hand scrollbars
+set guioptions-=r     " Remove right-hand scrollbars
+set guioptions-=b     " Remove horizontal scrollbars
+set guioptions-=e     " Remove GUI tablines
+
+" ----------------------------------------------------------------------
+"  Printing
+" ----------------------------------------------------------------------
+
+" ----------------------------------------------------------------------
+"  Messages and Info
+" ----------------------------------------------------------------------
+set showcmd
+
+" ----------------------------------------------------------------------
+"  Selecting Text
+" ----------------------------------------------------------------------
+
+" ----------------------------------------------------------------------
+"  Editing Text
+" ----------------------------------------------------------------------
+set backspace=eol,indent,start
+set complete=.,w,b,u,t,i
+set completeopt=menu,longest,preview
+set nojoinspaces
+set textwidth=80
+
+" ----------------------------------------------------------------------
+"  Tabs and Indenting
+" ----------------------------------------------------------------------
+set autoindent
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
+" ----------------------------------------------------------------------
+"  Folding
+" ----------------------------------------------------------------------
+
+" ----------------------------------------------------------------------
+"  Diff Mode
+" ----------------------------------------------------------------------
+
+" ----------------------------------------------------------------------
+"  Mapping
+" ----------------------------------------------------------------------
+
+" ----------------------------------------------------------------------
+"  Reading and Writing Files
+" ----------------------------------------------------------------------
+set nomodeline
+
+" ----------------------------------------------------------------------
+"  The Swap File
+" ----------------------------------------------------------------------
+
+" ----------------------------------------------------------------------
+"  Command-line Editing
+" ----------------------------------------------------------------------
+set history=100
+set virtualedit=all
+set wildmenu
+
+" ----------------------------------------------------------------------
+"  Executing External Commands
+" ----------------------------------------------------------------------
+
+" ----------------------------------------------------------------------
+"  Running Make and Jumping to Errors
+" ----------------------------------------------------------------------
+
+" ----------------------------------------------------------------------
+"  Language Specific
+" ----------------------------------------------------------------------
+
+" ----------------------------------------------------------------------
+"  Multi-byte Characters
+" ----------------------------------------------------------------------
+set encoding=utf-8
+
+" ----------------------------------------------------------------------
+"  Various
+" ----------------------------------------------------------------------
+
+" ======================================================================
+"                              Key Mapping
+" ======================================================================
+
+" <F7> [normal|insert] Toggle spell checking.
+nnoremap <F7> :set spell!<CR>
+inoremap <F7> <ESC>:set spell!<CR>a
+
+" <Ctrl-l> [normal] Redraw screen and remove and search highlighting.
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+" ======================================================================
+"                            Plugin Options
+" ======================================================================
+
+" ----------------------------------------------------------------------
+" UltiSnips
+" ----------------------------------------------------------------------
+let g:UltiSnipsSnippetDirectories = ["ultisnips"]
+
