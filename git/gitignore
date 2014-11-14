@@ -1,0 +1,13 @@
+*.a
+*.o
+*.py[co]
+*.so
+*.sw[nop]
+*~
+*.sublime-workspace
+.#*
+[#]*
+[#]*#
+__pycache__
+bzr-orphans
+tags
