@@ -27,6 +27,10 @@ if [ -r /usr/share/bash-completion/bash_completion ]; then
   source /usr/share/bash-completion/bash_completion
 fi
 
+# load environmental settings
+#------------------------------------------------------------------------------
+source "$HOME/.local/etc/shell/common/environment.sh"
+
 # initialize rbenv
 #------------------------------------------------------------------------------
 [[ -d "$HOME/.rbenv" ]] && eval "$(rbenv init -)"
