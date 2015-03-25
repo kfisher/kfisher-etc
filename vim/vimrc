@@ -46,7 +46,7 @@ set scrolloff=3
 " ----------------------------------------------------------------------
 colorscheme solarized
 if has("gui_running")
-    set background=dark
+    set background=light
 else
     set t_Co=16
     set background=dark
