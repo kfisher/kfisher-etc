@@ -21,3 +21,5 @@ fi
 # add rbenv/bin to the command path
 #------------------------------------------------------------------------------
 [[ -d "$HOME/.rbenv/bin" ]] && export PATH="$HOME/.rbenv/bin:$PATH"
+
+[[ -d "$HOME/.local/opt/npm/bin" ]] && export PATH="$HOME/.local/opt/npm/bin:$PATH"
