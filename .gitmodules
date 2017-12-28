@@ -16,3 +16,6 @@
 [submodule "vim/bundle/markdown"]
 	path = vim/bundle/markdown
 	url = https://github.com/tpope/vim-markdown.git
+[submodule "vim/bundle/typescript"]
+	path = vim/bundle/typescript
+	url = git@github.com:leafgarland/typescript-vim.git
