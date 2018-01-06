@@ -22,8 +22,3 @@
 [submodule "vim/bundle/elixir"]
 	path = vim/bundle/elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
-[submodule "emacs.d/themes/solarized"]
-	path = emacs.d/themes/solarized
-	url = git@github.com:sellout/emacs-color-theme-solarized.git
-[submodule "emacs.d/packages/evil"]
-	path = emacs.d/packages/evil
